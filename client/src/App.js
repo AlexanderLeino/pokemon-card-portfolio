@@ -6,10 +6,8 @@ function App() {
   return (
     <>
     <div className='px-2'>
-      <button className="bg-indigo-500" >button</button>
       <Button />
-      <Input />
-
+      
     </div>
     </>
 
