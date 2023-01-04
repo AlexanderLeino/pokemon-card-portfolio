@@ -1,9 +1,23 @@
 const axios = require('axios')
+const cheerio = require('cheerio')
 require('dotenv').config()
-
+const slug = require('slug')
+let baseURL ="https://www.pricecharting.com/game/pokemon-"
 module.exports = {
     findCard: async (req, res) => {
-        console.log('Hitting Route')
+        let response = await axios.get(`${baseURL}-evolving-skies/umbreon-vmax-215`)
+        let data = response?.data
+        const $ = cheerio.load(data)
+        let price = $('td[id="used_price"] > span[class="price js-price"]').text().trim()
+        let picture = $('div[class="cover"] > img').attr('src')
+        let TCGPlayerId = $('td[class="details"] > a[id="js-tcg-id-link"]').text().trim()
+        console.log('Player ID', TCGPlayerId)
+        console.log('Picture', picture)
+        console.log(price)
+
+       
+        
+        
     //     try {
     //         const options = {
     //             method: 'GET',
@@ -22,6 +36,9 @@ module.exports = {
     //         console.log(e)
     //     }
     // }
-    res.send({data: 'Hello'}).status(200)
+    res.send({price, picture}).status(200)
+    },
+    getCardSetSlug: async (req, res) => {
+        
     }
 }

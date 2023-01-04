@@ -11,42 +11,50 @@ const CardSchema = Schema({
         trim: true,
         maxlength: 25,
     },
+    prefix: {
+        type: String,
+        trim: true
+    },
+    suffix: {
+        type: String,
+        trim: true,
+    }, 
     type: {
         type: String,
         required: true,
     },
     move1: {
         type: String,
-        required: true,
+        
         trim: true,
     },
     damage1:{
         type: String,
-        required: true,
+       
         trim: true,
     },
 
     move1Description: {
         type: String,
         maxlength: 150,
-        required: true,
+      
         trim: true,
     },
     move2: {
         type: String,
-        required: false,
+      
         trim: true,
     },
     damage2: {
         type: String,
-        required: false,
+       
         trim: true,
     },
 
     move2Description: {
         type: String,
         maxlength: 150,
-        required: false,
+    
     },
 
     artist: {
