@@ -3,6 +3,7 @@ require('dotenv').config()
 
 module.exports = {
     findCard: async (req, res) => {
+        console.log('Hitting Route')
     //     try {
     //         const options = {
     //             method: 'GET',
@@ -21,6 +22,6 @@ module.exports = {
     //         console.log(e)
     //     }
     // }
-    console.log('hello World')
+    res.send({data: 'Hello'}).status(200)
     }
 }
