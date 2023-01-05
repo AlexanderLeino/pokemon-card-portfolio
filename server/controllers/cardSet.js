@@ -6,7 +6,8 @@ const {CardSet} = require('../models')
 let baseURL ="https://www.pricecharting.com/game/pokemon-"
 module.exports = {
     getAllCardSets: async (req, res) => {
-        let sets = CardSet.find({})
+        
+        let sets = await CardSet.find({})
         console.log(sets)
     },
     getCardSetSlug: async (req, res) => {

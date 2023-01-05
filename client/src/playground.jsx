@@ -4,8 +4,8 @@ export const Playground = () => {
     const [pokemon, setPokemon] = useState({})
     const fetchPokemon = async () => {
         console.log('Fetching')
-        let response = await fetch('http://localhost:3001/api/card/findCard', {
-            method: 'POST',
+        let response = await fetch('http://localhost:3001/api/cardSet/findAll', {
+            method: 'GET',
             headers: {
                 "Content-Type": "application/json",
             }
