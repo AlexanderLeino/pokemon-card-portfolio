@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect, FC} from 'react'
 import {Select} from '../Select'
-import { Button } from '../Button/'
+import { Button } from '../Button'
 import { INewCard } from '../../interfaces/newCard'
 
 export const Form:FC = (_props)=> {
@@ -25,12 +25,11 @@ export const Form:FC = (_props)=> {
     const fetchCardSet = async () => {
       let response = await fetch('http://localhost:3001/api/cardSet/findAll')
       let data =await response.json()
-      console.log(data)
     }
 
   return (
     <>
-      <Button onClick={fetchCardSet}>Fetch CardSet</Button>
+      <Button backgroundColor={`bg-teal-400`} onClick={fetchCardSet}>Fetch CardSet</Button>
     </>
   )
 }

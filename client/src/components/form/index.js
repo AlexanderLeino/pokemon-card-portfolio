@@ -34,8 +34,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Form = void 0;
 const react_1 = __importStar(require("react"));
-const Button_1 = require("../Button/");
-const Form = () => {
+const Button_1 = require("../Button");
+const Form = (_props) => {
     const [newCard, setNewCard] = (0, react_1.useState)({
         name: '',
         prefix: '',
@@ -53,15 +53,11 @@ const Form = () => {
         quantity: 1,
     });
     const fetchCardSet = () => __awaiter(void 0, void 0, void 0, function* () {
-        console.log('Card Set Calling');
-        let cardSet = yield fetch('localhost:3001/api/cardSet/findAll');
-        console.log(cardSet);
+        let response = yield fetch('http://localhost:3001/api/cardSet/findAll');
+        let data = yield response.json();
     });
-    (0, react_1.useEffect)(() => {
-        fetchCardSet();
-    }, []);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(Button_1.Button, { onClick: fetchCardSet }, "Fetch CardSet")));
+        react_1.default.createElement(Button_1.Button, { backgroundColor: `bg-teal-400`, onClick: fetchCardSet }, "Fetch CardSet")));
 };
 exports.Form = Form;
 //# sourceMappingURL=index.js.map
