@@ -8,7 +8,7 @@ module.exports = {
     getAllCardSets: async (req, res) => {
         
         let sets = await CardSet.find({})
-        console.log(sets)
+        res.json(sets).status(200)
     },
     getCardSetSlug: async (req, res) => {
         

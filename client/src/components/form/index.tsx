@@ -1,7 +1,11 @@
-import React, {useState} from 'react'
+
+import React, {useState, useEffect, FC} from 'react'
 import {Select} from '../Select'
-export const Form = () => {
-    const [newCard, setNewCard] = useState({
+import { Button } from '../Button/'
+import { INewCard } from '../../interfaces/newCard'
+
+export const Form:FC = (_props)=> {
+    const [newCard, setNewCard] = useState<INewCard>({
         name: '', 
         prefix: '', 
         suffix: '', 
@@ -18,17 +22,15 @@ export const Form = () => {
         quantity: 1,
     })
 
-    const fetchCardSet = () => {
-        fetch('http://localhost:3001/api/')
+    const fetchCardSet = async () => {
+      let response = await fetch('http://localhost:3001/api/cardSet/findAll')
+      let data =await response.json()
+      console.log(data)
     }
-
 
   return (
     <>
-        <div>index</div>
-        <Select cardSets={[]}/>
-
-        
+      <Button onClick={fetchCardSet}>Fetch CardSet</Button>
     </>
   )
 }
