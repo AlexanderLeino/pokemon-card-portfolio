@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const CardSet = require('./CardSet')
 
 
-const CardSchema = Schema({
+const CardSchema = new Schema({
 
     name: {
         type: String,

@@ -2,22 +2,32 @@ import React, {useState} from 'react'
 import { Input } from '../../Input'
 import { Flex } from '../../Flex'
 import { Button } from '../../Button'
+import axios from 'axios'
 interface accountInfo {
-  name: string,
+  userName: string,
   password: string,
+  firstName: string,
+  lastName: string,
+  email: string
 }
 
 export const CreateAccount = () => {
-
+  
 
   const [accountInfo, setAccountInfo] = useState<accountInfo>({
-    name: '',
-    password: ''
+    userName: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
   })
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
-    console.log('Account Info ---->', accountInfo)
+    let response = await axios.post('http://localhost:3001/api/user/createUser', {
+      accountInfo
+    })
+    console.log('Response From Handle Submit', response)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +37,9 @@ export const CreateAccount = () => {
     <form onSubmit={(e) => handleSubmit(e)}>
       <div>Create An Account!</div>
         <Flex flexDirection='flex-col'>
-          <Input name={'name'} onChange={handleChange}/>
+          <Input name={'userName'} onChange={handleChange}/>
           <Input name={'password'} onChange={handleChange}/>
+          <Input name={'email'} onChange={handleChange} />
           <Button onClick={handleSubmit}>Submit</Button>
         </Flex>
     </form>

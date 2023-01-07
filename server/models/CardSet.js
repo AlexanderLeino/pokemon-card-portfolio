@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const CardSetSchema = Schema({
+const CardSetSchema = new Schema({
     name: {
         type: String,
         unique: true,

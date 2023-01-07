@@ -1,6 +1,7 @@
 const axios = require('axios')
 require('dotenv').config()
-
+const User =  require('../models/User.js')
+console.log('USER 123', User)
 module.exports = {
     findUser: async (req, res) => {
     //     try {
@@ -22,5 +23,18 @@ module.exports = {
     //     }
     // }
     console.log('hello World')
+    },
+    createUser: async ({body}, res) => {
+        try {
+            let {accountInfo: {userName, password, email}} = body
+            console.log('userName', userName, 'password', password, 'email', email)
+            let response = await User.create({userName, password, email})
+            console.log('response', response)
+            res.send(response).status(200)
+
+        } catch(e) {
+            console.log('An error occured!', e)
+            res.send(e)
+        }
     }
 }

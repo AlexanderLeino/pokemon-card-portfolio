@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/AlexanderLeino/pokemon-card-portfolio#readme",
   "dependencies": {
+    "axios": "^1.2.2",
     "concurrently": "^7.6.0",
     "nes.css": "^2.3.0"
   }
