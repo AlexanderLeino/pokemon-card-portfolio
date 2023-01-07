@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 const validateEmail = (string) => {
     console.log("Validating this eamil string", string)
@@ -32,6 +34,20 @@ const UserSchema = new Schema({
         type: String,
         validate: custom,
     }
+})
+
+UserSchema.pre('save', function(next) {
+    let user = this
+    //If password isnt different than the original -> return 
+    if(!user.isModified('password')) return next()
+
+    bcrypt.hash(user.password, saltRounds, function(err, result){
+        console.log('Result ===>>', result)
+        if(err) return next(err)
+        user.password = result
+        next()
+    })
+
 })
 
 const User = mongoose.model('User', UserSchema)

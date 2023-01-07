@@ -5,8 +5,10 @@ interface props {
   flexDirection?: string,
 }
 
-export const Flex = ({children, flexDirection = 'row'}:props) => {
+const Flex = ({children, flexDirection = 'row'}:props) => {
   return (
     <div className={`flex ${flexDirection}`}>{children}</div>
   )
 }
+
+export default Flex

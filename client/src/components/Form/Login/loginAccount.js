@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -58,41 +69,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Playground = void 0;
+exports.CreateAccount = void 0;
 var react_1 = __importStar(require("react"));
-var Playground = function () {
+var Input_1 = __importDefault(require("../../Input"));
+var Flex_1 = __importDefault(require("../../Flex"));
+var Button_1 = require("../../Button");
+var axios_1 = __importDefault(require("axios"));
+var CreateAccount = function () {
     var _a = (0, react_1.useState)({
-        picture: '',
-        price: ''
-    }), pokemon = _a[0], setPokemon = _a[1];
-    var fetchPokemon = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var response, data;
+        userName: '',
+        password: '',
+    }), loginInfo = _a[0], setLoginInfo = _a[1];
+    var handleSubmit = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('http://localhost:3001/api/cardSet/findAll', {
-                        method: 'GET',
-                        headers: {
-                            "Content-Type": "application/json",
-                        }
-                    })];
+                case 0:
+                    e.preventDefault();
+                    return [4 /*yield*/, axios_1.default.post('http://localhost:3001/api/user/createUser', {
+                            loginInfo: loginInfo
+                        })];
                 case 1:
                     response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    data = _a.sent();
-                    setPokemon({
-                        price: data === null || data === void 0 ? void 0 : data.price,
-                        picture: data === null || data === void 0 ? void 0 : data.picture
-                    });
+                    console.log('Response From Handle Submit', response);
                     return [2 /*return*/];
             }
         });
     }); };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("div", { className: 'text-8xl antialiased font-bold text-amber-500 shadow-md w-fit p-2 border-2 border-slate-800 mt-20' }, "playground"),
-        react_1.default.createElement("img", { src: pokemon === null || pokemon === void 0 ? void 0 : pokemon.picture }),
-        react_1.default.createElement("div", null, pokemon === null || pokemon === void 0 ? void 0 : pokemon.price)));
+    var handleChange = function (e) {
+        var _a;
+        setLoginInfo(__assign(__assign({}, loginInfo), (_a = {}, _a[e.target.name] = e.target.value, _a)));
+    };
+    return (react_1.default.createElement("form", { onSubmit: function (e) { return handleSubmit(e); } },
+        react_1.default.createElement("div", null, "Create An Account!"),
+        react_1.default.createElement(Flex_1.default, { flexDirection: 'flex-col' },
+            react_1.default.createElement(Input_1.default, { name: 'userName', onChange: handleChange }),
+            react_1.default.createElement(Input_1.default, { name: 'password', onChange: handleChange }),
+            react_1.default.createElement(Input_1.default, { name: 'email', onChange: handleChange }),
+            react_1.default.createElement(Button_1.Button, { onClick: handleSubmit }, "Submit"))));
 };
-exports.Playground = Playground;
-//# sourceMappingURL=playground.js.map
+exports.CreateAccount = CreateAccount;
+//# sourceMappingURL=loginAccount.js.map

@@ -34,7 +34,15 @@ module.exports = {
 
         } catch(e) {
             console.log('An error occured!', e)
-            res.send(e)
+            res.send(e).status(400)
+        }
+    },
+    login: async({body}, res) => {
+        try {
+            
+        } catch(e) {
+            console.log('An Error has Occurred', e)
+            res.send(e).status(400)
         }
     }
 }

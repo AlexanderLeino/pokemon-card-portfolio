@@ -1,5 +1,5 @@
 import React, { useState, FC } from "react";
-import { Flex,} from "../Flex";
+import Flex from "../Flex";
 
 interface props {
     onChange: any,
@@ -7,7 +7,7 @@ interface props {
 }
 
 
-export const Input = ({onChange, name} : props) => {
+const Input = ({onChange, name} : props) => {
 
   return (
     <>
@@ -15,3 +15,5 @@ export const Input = ({onChange, name} : props) => {
     </>
   );
 };
+
+export default Input

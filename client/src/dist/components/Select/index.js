@@ -4,10 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Select = void 0;
-var react_1 = __importDefault(require("react"));
-var Select = function (_a) {
-    var cardSets = _a.cardSets;
-    return (react_1.default.createElement("select", null, cardSets === null || cardSets === void 0 ? void 0 : cardSets.map(function (cardSet) {
+const react_1 = __importDefault(require("react"));
+const Select = ({ cardSets }) => {
+    return (react_1.default.createElement("select", null, cardSets === null || cardSets === void 0 ? void 0 : cardSets.map((cardSet) => {
         return react_1.default.createElement("option", null, cardSet === null || cardSet === void 0 ? void 0 : cardSet.name);
     })));
 };
